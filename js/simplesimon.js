@@ -6,6 +6,7 @@
     function setupGame() {
         var boxes = ["#box1", "#box2", "#box3", "#box4"];
         $("#startGame").fadeOut();
+        $("#message").remove();
 
         boxes.forEach(function (box) {
             $(box).fadeTo("fast", 0.3);
@@ -29,8 +30,9 @@
 
     function gameOver() {
         var boxes = ["#box1", "#box2", "#box3", "#box4"];
+        var gameOverHtml = "<div class='alert alert-warning center-block' id='message' role='alert'><h3 class='text-center'><strong>Game Over !</strong>Please click Start Game again</h3></div>";
         $("#startGame").fadeIn();
-        $("#gameOver").html("Game Over !")
+        $("#gameOver").html(gameOverHtml);
         boxes.forEach(function (box) {
             $(box).fadeTo("fast", 1);
         });
@@ -39,6 +41,7 @@
     function simpleSimonGame() {
         var random = Math.floor(Math.random() * 4);
 
+        setupGame();
         sequence.push(random);
         showSequence(sequence);
 
@@ -54,7 +57,7 @@
                     counter ++
                 } else {
                     counter = 0;
-                    console.log("game over")
+                    sequence = [];
                     gameOver();
 
                 }
@@ -62,7 +65,6 @@
                     random = Math.floor(Math.random() * 4);
                     sequence.push(random);
                     showSequence(sequence);
-                    console.log("You did it");
                     counter = 0;
                 }
             });
@@ -72,7 +74,6 @@
 
     $("#startGame").on("click", function () {
         event.preventDefault();
-        setupGame();
         simpleSimonGame();
     });
 
