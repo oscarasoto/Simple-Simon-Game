@@ -12,7 +12,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/mystyles.css" rel="stylesheet">
+    <link href="css/simplesimon.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,13 +22,48 @@
 
 </head>
 <body>
+<div class="container">
+    <h1 class="text-center">Simple Simon</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <div class="col-xs-6">
+                        <div class="thumbnail box" id="box1"></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="thumbnail box" id="box2"></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="thumbnail box" id="box3"></div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="thumbnail box" id="box4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <h3 class="text-center">Repeat the sequence you just saw</h3>
+                <h4 class="text-center">Current Round: <strong id="rounds"></strong></h4>
+                <button type="button" class="btn btn-primary center-block" id="startGame">Start the Game !</button>
+                <p id="gameOver"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/simplesimon.js"></script>
 </body>
 </html>
