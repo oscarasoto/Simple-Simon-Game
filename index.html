@@ -26,6 +26,7 @@
     <h1 class="text-center">Simple Simon</h1>
     <div class="row">
         <div class="col-xs-12">
+            <!--Game Container-->
             <div class="game-container">
                 <div class="box-container">
                     <div class="col-xs-6">
@@ -48,17 +49,31 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> <!--End of Game Container-->
     </div>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <h3 class="text-center">Repeat the sequence you just saw</h3>
+            <h3 class="text-center" id="message"></h3>
         </div>
     </div>
+    <!--Game Over message via JS-->
     <div class="row">
-        <div class="col-xs-8 col-xs-offset-2" id="gameOver">
+        <div class="col-xs-8 col-xs-offset-2" id="gameOver"></div>
+    </div><!--End of Game Over message via JS-->
+    <!--Instructions-->
+    <div class="col-xs-10 col-xs-offset-1">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
+            Instructions
+        </button>
+        <div class="collapse" id="instructions">
+            <div class="well">
+                <p>Simple Simon is a game with 4 colors that play randomly and continue to add one color to the sequence at each turn.
+                    You must then select the correct order back to the game for as many rounds as you can.</p>
+            </div>
         </div>
-    </div>
+    </div> <!--End of Instructions-->
+
+
 </div>
 
 

@@ -3,23 +3,10 @@
 
     // Variables
     var boxes = ["#box1", "#box2", "#box3", "#box4"];
-    var sequenceSoundObject = document.createElement("audio");
-    var selectionSoundObject = document.createElement("audio");
     var random = Math.floor(Math.random() * 4); // Generates fist random number
     var counter = 0;
     var sequence = [];
-
-    sequenceSoundObject.src= "http://www.pacdv.com/sounds/interface_sound_effects/beep-3.wav";
-    sequenceSoundObject.volume=0.9;
-    sequenceSoundObject.autoPlay=false;
-    sequenceSoundObject.preLoad=true;
-
-    selectionSoundObject.src= "http://www.pacdv.com/sounds/interface_sound_effects/sound93.wav";
-    selectionSoundObject.volume=0.9;
-    selectionSoundObject.autoPlay=false;
-    selectionSoundObject.preLoad=true;
-
-
+    var userPlaying = false;
 
     // Functions
 
@@ -28,6 +15,7 @@
 
         $("#startGameButton").fadeOut();
         $("#gameOverMessage").remove();
+        $("#message").html("Repeat the sequence you just saw");
 
         boxes.forEach(function (box) {
             $(box).fadeTo("fast", 0.3);
@@ -40,6 +28,12 @@
 
     // showSequence shows the sequence to the user for every round.
     function showSequence(sequence) {
+
+        var sequenceSoundObject = document.createElement("audio");
+        sequenceSoundObject.src= "http://www.pacdv.com/sounds/interface_sound_effects/beep-3.wav";
+        sequenceSoundObject.volume=0.9;
+        sequenceSoundObject.autoPlay=false;
+        sequenceSoundObject.preLoad=true;
 
         $("#rounds").html("Round: <br><strong>" + sequence.length + "</strong>"); // Show the # of rounds
 
@@ -58,20 +52,34 @@
 
     // gameOver() Shows message "Game Over", show the start button for the user to play again.
     function gameOver() {
-        var gameOverHtml = "<div class='alert alert-warning center-block' id='gameOverMessage' role='alert'>" +
-                "<h3 class='text-center'><strong>Game Over !</strong> Please click Start Game again</h3></div>";
+        var gameOverHtml = "<div class='alert alert-warning alert-dismissible fade in center-block text-center' id='gameOverMessage' role='alert'>" +
+            "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>x</span></button>" +
+                "<strong>Game Over !</strong> Please click Start Game again</div>";
+
+
         $("#startGameButton").fadeIn();
         $("#gameOver").html(gameOverHtml);
         boxes.forEach(function (box) {
             $(box).fadeTo("fast", 1);
         });
 
+        userPlaying = false;
+
     }
 
     function simpleSimonGame() {
+        var selectionSoundObject = document.createElement("audio");
+        selectionSoundObject.src= "http://www.pacdv.com/sounds/interface_sound_effects/sound93.wav";
+        selectionSoundObject.volume=0.9;
+        selectionSoundObject.autoPlay=false;
+        selectionSoundObject.preLoad=true;
+
         // Event Listeners for the color boxes
         $(".box").each(function (indexBox, box) {
             box.addEventListener("click", function () {
+                // Flag to check if the user is playing
+                if (!userPlaying) return;
+
                 // === Checks Sequence ===
                 if(indexBox == sequence[counter]){
                 // If user click is correct it will restore opacity momentarily to show the user that his selection was correct.
@@ -94,12 +102,13 @@
         });
     }
 
-    // Initialize event listeners
     simpleSimonGame();
 
     // Start Game Button
     $("#startGameButton").on("click", function () {
         event.preventDefault();
+        userPlaying = true;
+        // Initialize event listeners
         setupGame();
         sequence.push(random);
         showSequence(sequence);
