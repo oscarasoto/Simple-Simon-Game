@@ -1,8 +1,7 @@
 body {
     font-family: "Graphik", Helvetica, sans-serif;
-    background: url('../img/wood003.png');
     background-size: cover;
-    background-color: #5D666D;
+    background: #5D666D url('../img/wood003.png');
     color: white;
 }
 
@@ -10,8 +9,7 @@ body {
     position: relative;
     width: 440px;
     height: 440px;
-    margin: auto;
-    margin-top: 50px;
+    margin: 50px auto auto;
     border: solid 1px black;
     border-radius: 50%;
     background-color: black;
@@ -26,6 +24,7 @@ body {
     position: relative;
     border: 1px solid black;
     height: 200px;
+    box-shadow: inset 0 0 50px #000;
 }
 
 /*Color boxes CSS */
@@ -73,7 +72,7 @@ body {
     font-size: 2em;
 }
 #startGameButton {
-    margin-top: 9.5px;
+    margin-top: 10px;
     font-size: larger;
 }
 #instructions {
